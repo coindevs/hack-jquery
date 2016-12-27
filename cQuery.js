@@ -1,17 +1,17 @@
 /* 1. Selector */
-
 var $ = function(str) {
   var selector = str.substr(0, 1);
 
   switch (selector) {
     case '#':
       console.log("Selector is Id");
-      break;
+      return document.getElementById(str.substr(1));
     case '.':
       console.log("Selector is ClassName");
-      break;
+      return document.getElementsByClassName(str.substr(1));
     default:
       console.log("Selector is TagName");
+      return document.getElementsByTagName(str);
   }
 }
 
