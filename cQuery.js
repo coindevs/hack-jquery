@@ -1,22 +1,47 @@
-/* 1. Selector */
-var $ = function(str) {
-  var selector = str.substr(0, 1);
+!function() {
+  /* 1. Elements Seletor */
+  var cQuery = function(arg) {
+    var type = typeof arg;
 
-  switch (selector) {
-    case '#':
-      console.log("Selector is Id");
-      return document.getElementById(str.substr(1));
-    case '.':
-      console.log("Selector is ClassName");
-      return document.getElementsByClassName(str.substr(1));
-    default:
-      console.log("Selector is TagName");
-      return document.getElementsByTagName(str);
+    if (type === 'string') {
+      return elementSelector(arg);
+    }
+    if (type === 'function') {
+      return documentReady(arg);
+    }
+
+    return [arg];
   }
-}
 
-$('div') // "Selector is TagName"
-$('.container') // "Selector is ClassName"
-$('#element01') // "Selector is Id"
+  function elementSelector(str) {
+    var selector = str.substr(0, 1);
 
-/* 2. Event Listener */
+    if (selector === '#') {
+      return document.getElementById(str.substr(1));
+    }
+    if (selector === '.') {
+      return document.getElementsByClassName(str.substr(1));
+    }
+
+    return document.getElementsByTagName(str);
+  }
+
+  function documentReady(func) {
+    return document.addEventListener('DOMContentLoaded', func);
+  }
+
+
+  /* 2. Event Listener */
+
+
+
+
+  this.$ = cQuery;
+}.call(this)
+
+var log = console.log;
+$(function(){ log('hello')});
+
+log($('div'));
+log($('.container'));
+log($('#element01'));
