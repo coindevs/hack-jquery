@@ -1,5 +1,12 @@
-!function() {
-  /* 1. Elements Seletor */
+(function() {
+  /*
+  1. Elements Seletor
+   - cQuery('.className'): 클래스 명으로 요소를 찾는다.
+   - cQuery('#id'): 아이디 값으로 요소를 찾는다.
+   - cQuery('tagName'): 태그 명으로 요소를 찾는다.
+   - cQuery(function(){}): 문서가 준비되었을 때 실행하는 함수를 안에 넣어준다.
+  */
+
   var cQuery = function(arg) {
     var type = typeof arg;
 
@@ -37,7 +44,7 @@
 
 
   this.$ = cQuery;
-}.call(this)
+}).call(this)
 
 var log = console.log;
 $(function(){ log('hello')});
