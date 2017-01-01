@@ -16,21 +16,11 @@
     if (type === 'function') {
       return documentReady(arg);
     }
-
     return [arg];
   }
 
   function elementSelector(str) {
-    var selector = str.substr(0, 1);
-
-    if (selector === '#') {
-      return document.getElementById(str.substr(1));
-    }
-    if (selector === '.') {
-      return document.getElementsByClassName(str.substr(1));
-    }
-
-    return document.getElementsByTagName(str);
+    return document.querySelectorAll(str);
   }
 
   function documentReady(func) {
@@ -40,15 +30,5 @@
 
   /* 2. Event Listener */
 
-
-
-
-  this.$ = cQuery;
+  this.$ = this.cQuery = cQuery;
 }).call(this)
-
-var log = console.log;
-$(function(){ log('hello')});
-
-log($('div'));
-log($('.container'));
-log($('#element01'));
